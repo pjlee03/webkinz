@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Species Guessing Game</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <main class="game-layout">
+    <h1>Species Guessing Game</h1>
+
+    <section class="image-panel">
+      <img id="animal-image" src="" alt="Mystery animal" />
+      <div class="timer-bar">
+        <span id="time-left">60s</span>
+        <span id="difficulty-label">Difficulty: 1x</span>
+      </div>
+    </section>
+
+    <section class="controls">
+      <label for="guess-input">Guess the species:</label>
+      <input id="guess-input" type="text" placeholder="e.g., red panda" />
+      <div class="button-row">
+        <button id="submit-guess" type="button">Submit Guess</button>
+        <button id="play-again" type="button">Play Again</button>
+      </div>
+      <p id="status-message" class="status-message">Start guessing before the image clears.</p>
+      <p id="fact-inline" class="fact-message"></p>
+    </section>
+
+    <section class="scoreboard">
+      <p>Round Score: <strong id="round-score">0</strong></p>
+      <p>Total Score: <strong id="total-score">0</strong></p>
+    </section>
+  </main>
+
+  <dialog id="fact-dialog">
+    <h2>Species Fact</h2>
+    <p id="fact-text"></p>
+    <button id="close-fact" type="button">Close</button>
+  </dialog>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
