@@ -7,70 +7,70 @@ const animalLibrary = [
     speciesName: "Giant Panda",
     acceptedGuesses: ["giant panda", "panda"],
     difficultyMultiplier: 2,
-    imageUrl: "animal images/giant-panda.jpg",
+    imageUrl: "animal_images/giant-panda.jpg",
     funFact: "Giant pandas spend most of their day eating bamboo and can consume over 25 pounds daily."
   },
   {
     speciesName: "Asian Elephant",
     acceptedGuesses: ["asian elephant", "elephant"],
     difficultyMultiplier: 2,
-    imageUrl: "animal images/asian-elephant.jpg",
+    imageUrl: "animal_images/asian-elephant.jpg",
     funFact: "Asian elephants have smaller ears than African elephants and are highly social animals."
   },
   {
     speciesName: "African Lion",
     acceptedGuesses: ["african lion", "lion"],
     difficultyMultiplier: 1,
-    imageUrl: "animal images/african-lion.jpg",
+    imageUrl: "animal_images/african-lion.jpg",
     funFact: "A lion’s roar can be heard up to five miles away."
   },
   {
     speciesName: "Manatee",
     acceptedGuesses: ["manatee", "florida manatee"],
     difficultyMultiplier: 2,
-    imageUrl: "animal images/Manatee.JPG",
+    imageUrl: "animal_images/Manatee.JPG",
     funFact: "Manatees are herbivores and can eat about 10% of their body weight in plants each day."
   },
   {
     speciesName: "Florida Panther",
     acceptedGuesses: ["florida panther", "panther"],
     difficultyMultiplier: 3,
-    imageUrl: "animal images/florida-panther.jpg",
+    imageUrl: "animal_images/florida-panther.jpg",
     funFact: "The Florida panther is one of the most endangered mammals in North America."
   },
   {
     speciesName: "Southern White Rhino",
     acceptedGuesses: ["southern white rhino", "white rhino", "rhino"],
     difficultyMultiplier: 2,
-    imageUrl: "animal images/Pilanesberg_Rhino.JPG",
+    imageUrl: "animal_images/Pilanesberg_Rhino.JPG",
     funFact: "Southern white rhinos are the larger of the two African rhino species."
   },
   {
     speciesName: "Brown Bear",
     acceptedGuesses: ["brown bear", "katmai brown bear", "bear"],
     difficultyMultiplier: 2,
-    imageUrl: "animal images/brown-bear.jpg",
+    imageUrl: "animal_images/brown-bear.jpg",
     funFact: "Katmai brown bears are famous for fishing salmon during seasonal runs."
   },
   {
     speciesName: "Bald Eagle",
     acceptedGuesses: ["bald eagle", "eagle"],
     difficultyMultiplier: 1,
-    imageUrl: "animal images/bald-eagle.jpg",
+    imageUrl: "animal_images/bald-eagle.jpg",
     funFact: "Bald eagles build some of the largest nests of any bird in North America."
   },
   {
     speciesName: "Gray Wolf",
     acceptedGuesses: ["gray wolf", "grey wolf", "wolf"],
     difficultyMultiplier: 2,
-    imageUrl: "animal images/gray-wolf.jpeg",
+    imageUrl: "animal_images/gray-wolf.jpeg",
     funFact: "Gray wolves communicate with body language, scent marking, and howling."
   },
   {
     speciesName: "Koala",
     acceptedGuesses: ["koala"],
     difficultyMultiplier: 1,
-    imageUrl: "animal images/koala.jpg",
+    imageUrl: "animal_images/koala.jpg",
     funFact: "Koalas sleep up to 18-20 hours a day to conserve energy from their low-calorie eucalyptus diet."
   }
 ];
