@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>GeoGuessr Game Demo</title>
+
+  <!-- Styles  -->
+  <link rel="stylesheet" href="src/styles.css" />
+
+  <!-- Leaflet CSS -->
+   <link
+     rel="stylesheet"
+     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+   />
+</head>
+
+<body> 
+   <main class="game-layout">
+     <h1>GeoGuessr Game Demo</h1>
+
+     <!-- Image / Live Cam Placeholder -->
+     <section class="image-panel">
+        <img id="animal-image" src="" alt="Animal location clue" />
+        <p id="zoo-label" style="margin-top: 8px; font-size: 0.9em; color: #555;">Location clue will appear here</p>
+     </section> 
+
+     <!-- Controls -->
+    <section class="controls">
+      <p class="status-message">
+        Click on the map to guess where this animal is located.
+      </p>
+
+      <div class="button-row">
+        <button id="submit-guess" type="button">Submit Guess</button>
+        <button id="play-again" type="button">Play Again</button>
+      </div>
+    </section>
+
+    <!-- Map -->
+     <div id="map"></div>
+
+    <!-- Results -->
+    <section class="results">
+      <p id="result"></p>
+      <p id="score"></p>
+      <p id="fun-fact"></p>
+    </section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+
+  <!-- App js-->
+  <script type="module" src="src/app.js"></script> 
+</body>
+</html>
