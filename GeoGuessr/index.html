@@ -4,27 +4,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>GeoGuessr Game Demo</title>
-
-  <!-- Styles  -->
+  <title>ZooGuessr</title>
   <link rel="stylesheet" href="src/styles.css" />
-
-  <!-- Leaflet CSS -->
-   <link
-     rel="stylesheet"
-     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-   />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 </head>
 
 <body> 
-   <main class="game-layout">
-     <h1>GeoGuessr Game Demo</h1>
+  <!-- Mode Selection Screen -->
+  <div id="mode-select">
+    <div class="mode-select-card">
+      <h1>ZooGuessr</h1>
+      <p>Guess which Zoo in the world each animal lives!</p>
+      <div class="mode-buttons">
+        <button id="btn-classic" type="button">
+          <span class="mode-title">Classic</span>
+          <span class="mode-description">Unlimited Rounds</span>
+        </button>
+        <button id="btn-challenge" type="button">
+          <span class="mode-title">Challenge</span>
+          <span class="mode-description">5 Rounds - final scorecard</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- Game -->
+   <main class="game-layout" id="game-layout" style="display:none;">
+    <div class="game-header">
+      <h1>ZooGuessr</h1>
+      <span id="round-counter"></span>
+    </div>
 
      <!-- Image / Live Cam Placeholder -->
      <section class="image-panel">
         <img id="animal-image" src="" alt="Animal location clue" />
-        <p id="zoo-label" style="margin-top: 8px; font-size: 0.9em; color: #555;">Location clue will appear here</p>
+        <p id="zoo-label">Location clue will appear here</p>
      </section> 
 
      <!-- Controls -->
@@ -36,6 +51,7 @@
       <div class="button-row">
         <button id="submit-guess" type="button">Submit Guess</button>
         <button id="play-again" type="button">Play Again</button>
+        <button id="next-round" type="button" style="display:none;">Next Round</button>
       </div>
     </section>
 
@@ -50,10 +66,34 @@
     </section>
   </main>
 
+<!-- Scorecard-->
+ <div id="scorecard" style="display:none;">
+  <div class="scorecard-card">
+    <h2>Challenge Complete!</h2>
+    <table id="scorecard-table">
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Animal</th>
+          <th>Zoo</th>
+          <th>Distance (km)</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="scorecard-body"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"><strong>Total Score</strong></td>
+          <td id="scorecard-total"></td>
+        </tr>
+      </tfoot>
+    </table>
+    <button id="play-agian-scorecard" type="button">Play Again</button>
+  </div>
+ </div>
+
   <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- App js-->
   <script type="module" src="src/app.js"></script> 
