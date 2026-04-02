@@ -16,10 +16,12 @@ let currentRound = null;
 let totalScore = 0;
 let activeRound = true;
 
-let gameMode = "classic";       // "classic" | "challenge"
+let gameMode = "classic";       // "classic" | "challenge" | "timed"
 const CHALLENGE_TOTAL_ROUNDS = 5;
 let challengeRound = 0;
 let challengeResults = [];
+let countDownTime = 60;
+let timerInterval = null;
 let mapInitialized = false;
 
 // ------------------------------
@@ -30,9 +32,11 @@ function selectMode(mode) {
     totalScore = 0;
     challengeRound = 0;
     challengeResults = [];
+    countDownTime = 60;
 
     document.getElementById("mode-select").style.display = "none";
     document.getElementById("game-layout").style.display = "block";
+    const countDownElement = document.getElementById('countdown-display');
 
     if (!mapInitialized) {
         initMap(handleMapClick);
@@ -41,6 +45,26 @@ function selectMode(mode) {
 
     const playAgainBtn = document.getElementById("play-again");
     playAgainBtn.style.display = mode === "classic" ? "inline-block" : "none";
+
+    clearInterval(timerInterval);
+
+    if (mode === "timed") {
+        countDownElement.style.display = "inline-block";
+        countDownElement.textContent = countDownTime + ' seconds remaining';
+        
+        timerInterval = setInterval(function() {
+            countDownTime--;
+            countDownElement.textContent = countDownTime + ' seconds remaining';
+            
+            if (countDownTime <= 0) {
+                clearInterval(timerInterval);
+                activeRound = false;
+                showScorecard();
+            }
+        }, 1000);
+    } else {
+        if (countDownElement) countDownElement.style.display = "none";
+    }
     
     startRound();
 }
@@ -68,7 +92,10 @@ function startRound() {
         challengeRound += 1;
         document.getElementById("round-counter").textContent = `Round ${challengeRound} / ${CHALLENGE_TOTAL_ROUNDS}`;
         document.getElementById("next-round").style.display = "none";
-    } else {
+    } else if (gameMode === "timed") {
+        document.getElementById("next-round").style.display = "none";
+    }
+    else {
         document.getElementById("round-counter").textContent = "";
     }
 
@@ -153,6 +180,18 @@ function submitGuess() {
         } else {
             document.getElementById("next-round").style.display = "inline-block";
         }
+    } else if (gameMode === "timed") {
+        challengeResults.push({
+            round: challengeResults.length + 1,
+            animal: currentRound.animal,
+            zooName: currentRound.zooName,
+            distance: distance.toFixed(2),
+            score: roundScore,
+        });
+
+        if (countDownTime > 0) {
+            document.getElementById("next-round").style.display = "inline-block";
+        }
     }
 }
 
@@ -185,6 +224,7 @@ function showScorecard() {
 // ------------------------------
 document.getElementById("btn-classic").addEventListener("click", () => selectMode("classic"));
 document.getElementById("btn-challenge").addEventListener("click", () => selectMode("challenge"));
+document.getElementById("btn-timed").addEventListener("click", () => selectMode("timed"));
 document.getElementById("submit-guess").addEventListener("click", submitGuess);
 document.getElementById("play-again").addEventListener("click", startRound);
 document.getElementById("next-round").addEventListener("click", startRound);
