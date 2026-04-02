@@ -297,5 +297,5 @@ guessInputElement.addEventListener("keydown", (event) => {
 
 resetForNextRound();
 homeButton.addEventListener("click", () => {
-  window.location.href = "../../index.html";
+  window.location.href = "https://webkinz.tech/";
 });
