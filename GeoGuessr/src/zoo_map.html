@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ce3ae4f5db0115f774a4eb949450d61f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ce3ae4f5db0115f774a4eb949450d61f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ce3ae4f5db0115f774a4eb949450d61f = L.map(
+                "map_ce3ae4f5db0115f774a4eb949450d61f",
+                {
+                    center: [27.437222500000004, -8.943051666666667],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_58b132b3e417b3609d3113e3d01a358c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_58b132b3e417b3609d3113e3d01a358c.addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+            var marker_0c47cd4681dfe4a5c59ae22121076dab = L.marker(
+                [40.4843, 79.9222],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_1fb18e167c0b5d394080aed94344e499 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3b386ed24f8d2a47872c2c7231e1adc = $(`<div id="html_a3b386ed24f8d2a47872c2c7231e1adc" style="width: 100.0%; height: 100.0%;">     <b>Pittsurgh Zoo</b><br>     <a href="https://www.pittsburghzoo.org/animals/webcams-online-activities/penguin-webcam/" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_1fb18e167c0b5d394080aed94344e499.setContent(html_a3b386ed24f8d2a47872c2c7231e1adc);
+            
+        
+
+        marker_0c47cd4681dfe4a5c59ae22121076dab.bindPopup(popup_1fb18e167c0b5d394080aed94344e499)
+        ;
+
+        
+    
+    
+            var marker_5e44b272ccb1d899888291c431b5209a = L.marker(
+                [38.9296, -77.0498],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_ba16f8a9c4bba751ca94755f63eb3551 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3059015ee3208a90f325e47e43b1c28c = $(`<div id="html_3059015ee3208a90f325e47e43b1c28c" style="width: 100.0%; height: 100.0%;">     <b>Smithsonian National Zoo </b><br>     <a href="https://nationalzoo.si.edu/webcams/panda-cam" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_ba16f8a9c4bba751ca94755f63eb3551.setContent(html_3059015ee3208a90f325e47e43b1c28c);
+            
+        
+
+        marker_5e44b272ccb1d899888291c431b5209a.bindPopup(popup_ba16f8a9c4bba751ca94755f63eb3551)
+        ;
+
+        
+    
+    
+            var marker_f1b581c9a832309a4541a1f0a6d2dc04 = L.marker(
+                [29.7158, -95.3909],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_3679f18bd92b95aaa214e011ce6f827b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a27e267a0fd2d4a674785a5441ce253f = $(`<div id="html_a27e267a0fd2d4a674785a5441ce253f" style="width: 100.0%; height: 100.0%;">     <b>Houston Zoo</b><br>     <a href="https://www.houstonzoo.org/explore/webcams/elephant-yard-cam/" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_3679f18bd92b95aaa214e011ce6f827b.setContent(html_a27e267a0fd2d4a674785a5441ce253f);
+            
+        
+
+        marker_f1b581c9a832309a4541a1f0a6d2dc04.bindPopup(popup_3679f18bd92b95aaa214e011ce6f827b)
+        ;
+
+        
+    
+    
+            var marker_ec97e77612729038fcbe612599b9ef4b = L.marker(
+                [32.7353, -117.149],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_45a43861a3985478d85e1da6a2a5069d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_27096a8074e44ea880b58f34fb9d722d = $(`<div id="html_27096a8074e44ea880b58f34fb9d722d" style="width: 100.0%; height: 100.0%;">     <b>San Diego Zoo </b><br>     <a href="https://zoo.sandiegozoo.org/cams/baboon-cam" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_45a43861a3985478d85e1da6a2a5069d.setContent(html_27096a8074e44ea880b58f34fb9d722d);
+            
+        
+
+        marker_ec97e77612729038fcbe612599b9ef4b.bindPopup(popup_45a43861a3985478d85e1da6a2a5069d)
+        ;
+
+        
+    
+    
+            var marker_ac53a38ba7f3bf8cab6ba357238c8773 = L.marker(
+                [55.9459, 3.269],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_29a7d8fb6ed6accb94a635cc5dfa8ae4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f8c543dd7f7c6f59fe455d7b0f98b1e = $(`<div id="html_2f8c543dd7f7c6f59fe455d7b0f98b1e" style="width: 100.0%; height: 100.0%;">     <b>Edinburgh Zoo</b><br>     <a href="https://www.edinburghzoo.org.uk/webcams/rockhopper-cam" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_29a7d8fb6ed6accb94a635cc5dfa8ae4.setContent(html_2f8c543dd7f7c6f59fe455d7b0f98b1e);
+            
+        
+
+        marker_ac53a38ba7f3bf8cab6ba357238c8773.bindPopup(popup_29a7d8fb6ed6accb94a635cc5dfa8ae4)
+        ;
+
+        
+    
+    
+            var marker_e66a9b9811dad37044fe91739401886d = L.marker(
+                [34.2569, 134.8276],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_67320ba0deb2f080be669c99e0109a80 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3c55d7f7a08535371f888a4c3b458cda = $(`<div id="html_3c55d7f7a08535371f888a4c3b458cda" style="width: 100.0%; height: 100.0%;">     <b>Awaji Island Monkey Center</b><br>     <a href="http://skylinewebcams.com/en/webcam/japan/hyogo/sumoto/awaji-monkey-center.html" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_67320ba0deb2f080be669c99e0109a80.setContent(html_3c55d7f7a08535371f888a4c3b458cda);
+            
+        
+
+        marker_e66a9b9811dad37044fe91739401886d.bindPopup(popup_67320ba0deb2f080be669c99e0109a80)
+        ;
+
+        
+    
+    
+            var marker_60baa24e725bf957a821b558a72e59c4 = L.marker(
+                [31.02, 103.1],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_ad9e9b46ac32ffe004bc4a18f4b3c744 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6932d5548c695725a31e7bbbff56575d = $(`<div id="html_6932d5548c695725a31e7bbbff56575d" style="width: 100.0%; height: 100.0%;">     <b>Wolong Grove</b><br>     <a href="https://explore.org/livecams/panda-bears/china-panda-cam-1" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_ad9e9b46ac32ffe004bc4a18f4b3c744.setContent(html_6932d5548c695725a31e7bbbff56575d);
+            
+        
+
+        marker_60baa24e725bf957a821b558a72e59c4.bindPopup(popup_ad9e9b46ac32ffe004bc4a18f4b3c744)
+        ;
+
+        
+    
+    
+            var marker_ee21e0fce9b14e6c8c6b0d6d8385d219 = L.marker(
+                [49.3005, -123.1309],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_74268cb08f1a4da21fcb07e6185247d6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f602e2fafdbe22904fd2a7bac80c67bb = $(`<div id="html_f602e2fafdbe22904fd2a7bac80c67bb" style="width: 100.0%; height: 100.0%;">     <b>Vancouver Aquarium</b><br>     <a href="https://www.youtube.com/watch?v=9mg9PoFEX2U" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_74268cb08f1a4da21fcb07e6185247d6.setContent(html_f602e2fafdbe22904fd2a7bac80c67bb);
+            
+        
+
+        marker_ee21e0fce9b14e6c8c6b0d6d8385d219.bindPopup(popup_74268cb08f1a4da21fcb07e6185247d6)
+        ;
+
+        
+    
+    
+            var marker_5d34f1f56a6eb5a16765c69e91c43c12 = L.marker(
+                [-24.5138, 31.0323],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_15988e452d307e82531781b8ee5fe3af = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ae667312cf8b9fc59b4142b039247440 = $(`<div id="html_ae667312cf8b9fc59b4142b039247440" style="width: 100.0%; height: 100.0%;">     <b>Hoedspruit Endangered Species Centre</b><br>     <a href="https://www.youtube.com/watch?v=oruIH1ZadqE" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_15988e452d307e82531781b8ee5fe3af.setContent(html_ae667312cf8b9fc59b4142b039247440);
+            
+        
+
+        marker_5d34f1f56a6eb5a16765c69e91c43c12.bindPopup(popup_15988e452d307e82531781b8ee5fe3af)
+        ;
+
+        
+    
+    
+            var marker_fa953c45895970cc8c887d858dfdd688 = L.marker(
+                [-18.58583, 23.53388],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_c99a54e3f51eb0c3fa7afd219687fc54 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6170837980dcb99b8c4731538bc0a043 = $(`<div id="html_6170837980dcb99b8c4731538bc0a043" style="width: 100.0%; height: 100.0%;">     <b>Zarafa Camp</b><br>     <a href="https://www.youtube.com/watch?v=2EZavJUNdLI" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_c99a54e3f51eb0c3fa7afd219687fc54.setContent(html_6170837980dcb99b8c4731538bc0a043);
+            
+        
+
+        marker_fa953c45895970cc8c887d858dfdd688.bindPopup(popup_c99a54e3f51eb0c3fa7afd219687fc54)
+        ;
+
+        
+    
+    
+            var marker_6d0e7d0436dabd80ecda9cd766d28235 = L.marker(
+                [51.338, 9.859],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_6e23170c521e2bf74f0395520f525fb8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fe223ffa237101c6b96686882929f12d = $(`<div id="html_fe223ffa237101c6b96686882929f12d" style="width: 100.0%; height: 100.0%;">     <b>Gesellschaft zur Erhaltung</b><br>     <a href="https://www.youtube.com/watch?v=_EmLriL9494" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_6e23170c521e2bf74f0395520f525fb8.setContent(html_fe223ffa237101c6b96686882929f12d);
+            
+        
+
+        marker_6d0e7d0436dabd80ecda9cd766d28235.bindPopup(popup_6e23170c521e2bf74f0395520f525fb8)
+        ;
+
+        
+    
+    
+            var marker_b32716855e840023c90c5b2c6c0f60ac = L.marker(
+                [8.62, -80.14],
+                {
+}
+            ).addTo(map_ce3ae4f5db0115f774a4eb949450d61f);
+        
+    
+        var popup_53e0ce7cf5dc0de187dc4c2048e36273 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bb45623ddc2e0663cc747c9dd82801ec = $(`<div id="html_bb45623ddc2e0663cc747c9dd82801ec" style="width: 100.0%; height: 100.0%;">     <b>Canopy Lodge</b><br>     <a href="https://www.youtube.com/watch?v=WtoxxHADnGk" target="_blank">Watch Live Cam</a>     </div>`)[0];
+                popup_53e0ce7cf5dc0de187dc4c2048e36273.setContent(html_bb45623ddc2e0663cc747c9dd82801ec);
+            
+        
+
+        marker_b32716855e840023c90c5b2c6c0f60ac.bindPopup(popup_53e0ce7cf5dc0de187dc4c2048e36273)
+        ;
+
+        
+    
+</script>
+</html>
