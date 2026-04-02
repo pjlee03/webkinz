@@ -81,6 +81,68 @@ function handleMapClick(e) {
 }
 
 // ------------------------------
+// HIGH SCORES LOGIC
+// ------------------------------
+const HIGH_SCORES_KEY = "zooGuessrHighScores";
+
+function getHighScores() {
+    const scores = localStorage.getItem(HIGH_SCORES_KEY);
+    if (!scores) return { challenge: [], timed: [] };
+
+    try {
+        const parsed = JSON.parse(scores);
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed) || !parsed.challenge || !parsed.timed) {
+            console.warn("Invalid leaderboard format");
+            return { challenge: [], timed: [] };
+        }
+        return parsed;
+    } catch (error) {
+        console.error("Error reading saved scores", error);
+        return { challenge: [], timed: [] };
+    }
+}
+
+function saveHighScore(score, mode) {
+    if (mode !== "challenge" && mode !== "timed") return; 
+
+    const highScores = getHighScores();
+    const newScore = { score: score, date: new Date().toLocaleDateString() };
+    
+    highScores[mode].push(newScore);
+    highScores[mode].sort((a, b) => b.score - a.score); 
+    highScores[mode] = highScores[mode].slice(0, 10);
+    
+    localStorage.setItem(HIGH_SCORES_KEY, JSON.stringify(highScores));
+    displayHighScores();
+}
+
+function displayHighScores() {
+    const highScores = getHighScores();
+    
+    const generateListHTML = (scoresArray) => {
+        if (!scoresArray || scoresArray.length === 0) return "<li>No scores yet.</li>";
+        let html = "";
+        scoresArray.forEach(entry => {
+            html += `<li>${entry.score} pts - ${entry.date}</li>`;
+        });
+        return html;
+    };
+
+    const challengeHTML = generateListHTML(highScores.challenge);
+    const timedHTML = generateListHTML(highScores.timed);
+
+    const homeChallenge = document.getElementById("home-challenge-scores");
+    const homeTimed = document.getElementById("home-timed-scores");
+    const scorecardChallenge = document.getElementById("scorecard-challenge-scores");
+    const scorecardTimed = document.getElementById("scorecard-timed-scores");
+
+    if (homeChallenge) homeChallenge.innerHTML = challengeHTML;
+    if (homeTimed) homeTimed.innerHTML = timedHTML;
+    if (scorecardChallenge) scorecardChallenge.innerHTML = challengeHTML;
+    if (scorecardTimed) scorecardTimed.innerHTML = timedHTML;
+}
+
+// ------------------------------
 // GAME LOGIC
 // ------------------------------
 function startRound() {
@@ -216,6 +278,7 @@ function showScorecard() {
         tbody.appendChild(tr);
     }
     document.getElementById("scorecard-total").textContent = totalScore;
+    saveHighScore(totalScore, gameMode);
     document.getElementById("scorecard").style.display = "flex";
 }
 
@@ -236,4 +299,6 @@ document.getElementById("play-again-scorecard").addEventListener("click", () => 
 // ------------------------------
 // INITIALIZE
 // ------------------------------
-window.onload = function () {};
+window.onload = function () {
+    displayHighScores();
+};

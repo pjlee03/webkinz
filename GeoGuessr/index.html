@@ -12,8 +12,9 @@
 
 <body> 
   <!-- Mode Selection Screen -->
-  <div id="mode-select">
-    <div class="mode-select-card">
+  <div id="mode-select" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 30px; padding: 40px 0;">
+    
+    <div class="mode-select-card" style="margin: 0;">
       <h1>ZooGuessr</h1>
       <p>Guess which Zoo in the world each animal lives!</p>
       <div class="mode-buttons">
@@ -30,6 +31,21 @@
           <span class="mode-description">60 Seconds - final scorecard</span>
         </button>
       </div>
+    </div>
+
+    <div class="mode-select-card" style="margin: 0;">
+      <h2>Top 10 High Scores</h2>
+      <div style="display: flex; justify-content: center; gap: 60px; text-align: left; margin-top: 20px;">
+        <div>
+          <h3 style="margin-bottom: 10px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Challenge</h3>
+          <ol id="home-challenge-scores" style="padding-left: 20px;"></ol>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 10px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Timed</h3>
+          <ol id="home-timed-scores" style="padding-left: 20px;"></ol>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 
