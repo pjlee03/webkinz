@@ -15,6 +15,7 @@
       <div class="timer-bar">
         <span id="time-left">60s</span>
         <span id="difficulty-label">Difficulty: 1x</span>
+        <span id="animal-progress">Animal 1 of 1</span>
       </div>
     </section>
 
@@ -23,16 +24,26 @@
       <input id="guess-input" type="text" placeholder="e.g., red panda" />
       <div class="button-row">
         <button id="submit-guess" type="button">Submit Guess</button>
+        <button id="show-hint" type="button">Hint</button>
         <button id="play-again" type="button">Play Again</button>
          <button id="home-button" type="button">Home</button>
       </div>
       <p id="status-message" class="status-message">Start guessing before the image clears.</p>
+      <p id="hint-panel" class="hint-message">Hints will appear here.</p>
       <p id="fact-inline" class="fact-message"></p>
+      <section id="summary-panel" class="summary-panel" hidden>
+        <h2>Session Summary</h2>
+        <p id="summary-message"></p>
+      </section>
     </section>
 
     <section class="scoreboard">
       <p>Round Score: <strong id="round-score">0</strong></p>
       <p>Total Score: <strong id="total-score">0</strong></p>
+      <p>Current Mode High Score: <strong id="high-score">0</strong></p>
+      <p>Normal High: <strong id="normal-high-score">0</strong></p>
+      <p>Time Trials High: <strong id="time-trials-high-score">0</strong></p>
+      <button id="reset-high-score" type="button">Reset High Scores</button>
     </section>
   </main>
 
