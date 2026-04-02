@@ -1,4 +1,4 @@
-# Webkins
+# Webkins Webkinz.tech
 ----------------------------------------------------------------------------------------------------------
 # Overview
 Web application targeted towards animal lovers that offers several features to learn. The goal is to use
