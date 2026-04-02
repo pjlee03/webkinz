@@ -137,3 +137,11 @@ dialog {
   padding: 16px;
   max-width: 420px;
 }
+
+#home-button {
+  background: #6c757d;
+}
+
+#home-button:hover {
+  opacity: 0.92;
+}

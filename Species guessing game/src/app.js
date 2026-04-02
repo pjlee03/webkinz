@@ -83,6 +83,7 @@ const submitGuessButton = document.getElementById("submit-guess");
 const playAgainButton = document.getElementById("play-again");
 const statusMessageElement = document.getElementById("status-message");
 const factInlineElement = document.getElementById("fact-inline");
+const homeButton = document.getElementById("home-button");
 const roundScoreElement = document.getElementById("round-score");
 const totalScoreElement = document.getElementById("total-score");
 const factDialogElement = document.getElementById("fact-dialog");
@@ -295,3 +296,6 @@ guessInputElement.addEventListener("keydown", (event) => {
 });
 
 resetForNextRound();
+homeButton.addEventListener("click", () => {
+  window.location.href = "../../index.html";
+});
