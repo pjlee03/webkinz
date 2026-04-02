@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Mode - Species Guessing Game</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div id="mode-select">
+    <div class="mode-select-card">
+      <h1>Species Guessing Game</h1>
+      <p>Choose your challenge and test your wildlife knowledge.</p>
+      <div class="mode-buttons">
+        <button id="start-normal" type="button">
+          <span class="mode-title">Normal Mode</span>
+          <span class="mode-description">1 Animal, 60 Seconds</span>
+        </button>
+        <button id="start-time-trials" type="button">
+          <span class="mode-title">Time Trials</span>
+          <span class="mode-description">5 Animals, 90 Seconds Global</span>
+        </button>
+      </div>
+      <p id="previous-best" class="status-message">Loading previous best scores...</p>
+      <div class="button-row mode-home-row">
+        <button id="home-button" type="button">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY_NORMAL_HIGH = "speciesGame_highScore_normal";
+    const STORAGE_KEY_TIME_TRIAL_HIGH = "speciesGame_highScore_timeTrials";
+
+    const startNormalButton = document.getElementById("start-normal");
+    const startTimeTrialsButton = document.getElementById("start-time-trials");
+    const previousBestElement = document.getElementById("previous-best");
+    const homeButton = document.getElementById("home-button");
+
+    const normalHigh = Number.parseInt(window.localStorage.getItem(STORAGE_KEY_NORMAL_HIGH) || "0", 10) || 0;
+    const timeTrialsHigh = Number.parseInt(window.localStorage.getItem(STORAGE_KEY_TIME_TRIAL_HIGH) || "0", 10) || 0;
+    previousBestElement.textContent = `Previous Best - Normal: ${normalHigh} | Time Trials: ${timeTrialsHigh}`;
+
+    startNormalButton.addEventListener("click", () => {
+      window.location.href = "index.html?mode=normal";
+    });
+
+    startTimeTrialsButton.addEventListener("click", () => {
+      window.location.href = "index.html?mode=timeTrials";
+    });
+
+    homeButton.addEventListener("click", () => {
+      window.location.href = "https://webkinz.tech/";
+    });
+  </script>
+</body>
+</html>
