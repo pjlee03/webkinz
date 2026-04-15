@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webkinz - Login</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <header>
+        <h1 class="heading">Webkinz</h1>
+        <h3 class="title">Please login or create an account to save progress.</h3>
+    </header>
+    
+    <div class="container">
+        <div class="btn">
+            <div class="slider"></div> 
+            <button class="login">Login</button>
+            <button class="signup">Signup</button>
+        </div>
+        
+        <div class="form-section">
+            <div class="login-box">
+                <input type="email" id="loginEmail" class="username ele" placeholder="Email Address">
+                <input type="password" id="loginPassword" class="password ele" placeholder="Password">
+                <button class="clkbtn" id="loginSubmitBtn">Login</button>
+            </div>
+            <div class="signup-box">
+                <input type="email" id="signupEmail" class="username ele" placeholder="Email Address">
+                <input type="password" id="signupPassword" class="password ele" placeholder="Password">
+                <input type="password" id="signupConfirm" class="password ele" placeholder="Confirm password">
+                <button class="clkbtn" id="signupSubmitBtn">Signup</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="login.js"></script>
+</body>
+</html>
