@@ -8,42 +8,88 @@
 </head>
 <body>
   <main class="game-layout">
-    <h1>Species Guessing Game</h1>
+    <header class="hero-panel">
+      <div>
+        <p class="eyebrow">Wildlife quiz session</p>
+        <h1>Species Guessing Game</h1>
+        <p class="hero-copy">Work through a full session of animals, manage hints, and chase a leaderboard score instead of a single-round win.</p>
+      </div>
+      <div class="hero-stats">
+        <p><span id="mode-label">Mode: Classic</span></p>
+        <p><span id="difficulty-label">Difficulty: Medium</span></p>
+        <p><span id="animal-progress">Rounds: 8</span></p>
+      </div>
+    </header>
 
     <section class="image-panel">
       <img id="animal-image" src="" alt="Mystery animal" />
-      <div class="timer-bar">
-        <span id="time-left">60s</span>
-        <span id="difficulty-label">Difficulty: 1x</span>
-        <span id="animal-progress">Animal 1 of 1</span>
+      <div class="meter-stack">
+        <div class="meter-row">
+          <span>Blur reveal</span>
+          <span id="time-left">Time: 60s</span>
+        </div>
+        <div class="meter-track"><div id="blur-progress-fill" class="meter-fill"></div></div>
+        <div class="meter-row small-row">
+          <span>Mode best</span>
+          <span id="mode-best-score">0</span>
+        </div>
+        <div class="meter-track session-track"><div id="session-progress-fill" class="meter-fill session-fill"></div></div>
       </div>
     </section>
 
     <section class="controls">
       <label for="guess-input">Guess the species:</label>
-      <input id="guess-input" type="text" placeholder="e.g., red panda" />
-      <div class="button-row">
+      <input id="guess-input" type="text" placeholder="e.g., red panda" autocomplete="off" />
+      <div class="button-row hint-row">
         <button id="submit-guess" type="button">Submit Guess</button>
-        <button id="show-hint" type="button">Hint</button>
-        <button id="play-again" type="button">Play Again</button>
-         <button id="home-button" type="button">Home</button>
+        <button id="hint-habitat" type="button">Reveal habitat</button>
+        <button id="hint-category" type="button">Reveal category</button>
+        <button id="hint-letter" type="button">First letter</button>
       </div>
-      <p id="status-message" class="status-message">Start guessing before the image clears.</p>
+      <div class="button-row session-row">
+        <button id="play-again" type="button">Restart Session</button>
+        <button id="mode-select-button" type="button">Choose Mode</button>
+        <button id="home-button" type="button">Home</button>
+        <button id="reset-progress" type="button">Reset Progress</button>
+      </div>
+      <p id="status-message" class="status-message">Choose a mode to start playing.</p>
       <p id="hint-panel" class="hint-message">Hints will appear here.</p>
       <p id="fact-inline" class="fact-message"></p>
       <section id="summary-panel" class="summary-panel" hidden>
-        <h2>Session Summary</h2>
+        <div class="summary-header">
+          <div>
+            <p class="eyebrow">Game Over</p>
+            <h2>Session Summary</h2>
+          </div>
+          <div class="summary-score">Final score <strong id="final-score">0</strong></div>
+        </div>
         <p id="summary-message"></p>
+        <div class="summary-grid">
+          <p>Rounds cleared <strong id="final-rounds">0/0</strong></p>
+          <p>Correct answers <strong id="final-correct">0</strong></p>
+          <p>Best streak <strong id="final-streak">0</strong></p>
+          <p>Elapsed time <strong id="final-time">0s</strong></p>
+          <p>Mode <strong id="final-mode">Classic</strong></p>
+          <p>Difficulty <strong id="final-difficulty">Medium</strong></p>
+        </div>
+        <div class="leaderboard-shell">
+          <div class="leaderboard-header">
+            <h3>Leaderboard</h3>
+            <span>Best score: <strong id="leaderboard-best">0</strong></span>
+          </div>
+          <ol id="leaderboard-list" class="leaderboard-list"></ol>
+        </div>
+        <div class="button-row session-row summary-actions">
+          <button id="restart-session" type="button">Play Again</button>
+        </div>
       </section>
     </section>
 
     <section class="scoreboard">
-      <p>Round Score: <strong id="round-score">0</strong></p>
-      <p>Total Score: <strong id="total-score">0</strong></p>
-      <p>Current Mode High Score: <strong id="high-score">0</strong></p>
-      <p>Normal High: <strong id="normal-high-score">0</strong></p>
-      <p>Time Trials High: <strong id="time-trials-high-score">0</strong></p>
-      <button id="reset-high-score" type="button">Reset High Scores</button>
+      <p>Round Score <strong id="round-score">0</strong></p>
+      <p>Total Score <strong id="total-score">0</strong></p>
+      <p>Streak <strong id="streak-score">0</strong></p>
+      <p>Best Streak <strong id="best-streak">0</strong></p>
     </section>
   </main>
 
@@ -53,6 +99,6 @@
     <button id="close-fact" type="button">Close</button>
   </dialog>
 
-  <script src="src/app.js"></script>
+  <script src="src/game.js"></script>
 </body>
 </html>

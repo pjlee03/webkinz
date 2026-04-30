@@ -9,19 +9,41 @@
 <body>
   <div id="mode-select">
     <div class="mode-select-card">
-      <h1>Species Guessing Game</h1>
-      <p>Choose your challenge and test your wildlife knowledge.</p>
-      <div class="mode-buttons">
-        <button id="start-normal" type="button">
-          <span class="mode-title">Normal Mode</span>
-          <span class="mode-description">1 Animal, 60 Seconds</span>
+      <p class="eyebrow">Species guessing game</p>
+      <h1>Choose your run</h1>
+      <p class="mode-intro">Pick a difficulty, then launch a full session mode. Speed Run uses a daily seeded deck so everyone gets the same challenge for the day.</p>
+
+      <div class="difficulty-toggle" id="difficulty-toggle">
+        <button class="is-selected" data-difficulty="easy" type="button">
+          <span class="mode-title">Easy</span>
+          <span class="difficulty-description">Slower blur, clearer animals, gentler guessing.</span>
         </button>
-        <button id="start-time-trials" type="button">
-          <span class="mode-title">Time Trials</span>
-          <span class="mode-description">5 Animals, 90 Seconds Global</span>
+        <button data-difficulty="medium" type="button">
+          <span class="mode-title">Medium</span>
+          <span class="difficulty-description">Balanced blur speed and standard guess leniency.</span>
+        </button>
+        <button data-difficulty="hard" type="button">
+          <span class="mode-title">Hard</span>
+          <span class="difficulty-description">Faster blur, obscure species, and stricter guesses.</span>
         </button>
       </div>
-      <p id="previous-best" class="status-message">Loading previous best scores...</p>
+
+      <div class="mode-buttons">
+        <button class="is-selected" data-mode="classic" type="button">
+          <span class="mode-title">Classic</span>
+          <span class="mode-description">8 rounds, retries allowed, session score at the end.</span>
+        </button>
+        <button data-mode="suddenDeath" type="button">
+          <span class="mode-title">Sudden Death</span>
+          <span class="mode-description">5 rounds, one wrong guess can end the session.</span>
+        </button>
+        <button data-mode="speedRun" type="button">
+          <span class="mode-title">Speed Run</span>
+          <span class="mode-description">10 rounds, daily seeded deck, fastest total time wins.</span>
+        </button>
+      </div>
+
+      <p id="previous-best" class="status-message">Loading leaderboard...</p>
       <div class="button-row mode-home-row">
         <button id="home-button" type="button">Home</button>
       </div>
@@ -29,25 +51,52 @@
   </div>
 
   <script>
-    const STORAGE_KEY_NORMAL_HIGH = "speciesGame_highScore_normal";
-    const STORAGE_KEY_TIME_TRIAL_HIGH = "speciesGame_highScore_timeTrials";
+    const STORAGE_KEY_HIGH_SCORES = "speciesGame_highScores_v2";
+    const STORAGE_KEY_LAST_DIFFICULTY = "speciesGame_lastDifficulty_v2";
+    const STORAGE_KEY_LAST_MODE = "speciesGame_lastMode_v2";
 
-    const startNormalButton = document.getElementById("start-normal");
-    const startTimeTrialsButton = document.getElementById("start-time-trials");
+    const difficultyButtons = Array.from(document.querySelectorAll("[data-difficulty]"));
+    const modeButtons = Array.from(document.querySelectorAll("[data-mode]"));
     const previousBestElement = document.getElementById("previous-best");
     const homeButton = document.getElementById("home-button");
 
-    const normalHigh = Number.parseInt(window.localStorage.getItem(STORAGE_KEY_NORMAL_HIGH) || "0", 10) || 0;
-    const timeTrialsHigh = Number.parseInt(window.localStorage.getItem(STORAGE_KEY_TIME_TRIAL_HIGH) || "0", 10) || 0;
-    previousBestElement.textContent = `Previous Best - Normal: ${normalHigh} | Time Trials: ${timeTrialsHigh}`;
+    let currentDifficulty = window.localStorage.getItem(STORAGE_KEY_LAST_DIFFICULTY) || "medium";
 
-    startNormalButton.addEventListener("click", () => {
-      window.location.href = "index.html?mode=normal";
+    function getHighScoreSummary() {
+      try {
+        const highScores = JSON.parse(window.localStorage.getItem(STORAGE_KEY_HIGH_SCORES) || "{}");
+        const entries = Object.values(highScores);
+        return entries.length ? Math.max(...entries) : 0;
+      } catch (error) {
+        return 0;
+      }
+    }
+
+    function updateDifficultySelection() {
+      difficultyButtons.forEach((button) => {
+        button.classList.toggle("is-selected", button.dataset.difficulty === currentDifficulty);
+      });
+      window.localStorage.setItem(STORAGE_KEY_LAST_DIFFICULTY, currentDifficulty);
+    }
+
+    function launchMode(mode) {
+      window.localStorage.setItem(STORAGE_KEY_LAST_MODE, mode);
+      window.location.href = `index.html?mode=${encodeURIComponent(mode)}&difficulty=${encodeURIComponent(currentDifficulty)}`;
+    }
+
+    difficultyButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentDifficulty = button.dataset.difficulty;
+        updateDifficultySelection();
+      });
     });
 
-    startTimeTrialsButton.addEventListener("click", () => {
-      window.location.href = "index.html?mode=timeTrials";
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => launchMode(button.dataset.mode));
     });
+
+    previousBestElement.textContent = `Leaderboard best score: ${getHighScoreSummary()}`;
+    updateDifficultySelection();
 
     homeButton.addEventListener("click", () => {
       window.location.href = "https://webkinz.tech/";
