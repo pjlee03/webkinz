@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebKinz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #2E27F5 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { font-size: 3em; margin-bottom: 20px; }
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            width: 250px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .card h2 { margin: 0 0 10px 0; font-size: 1.8em; }
+        .card p  { margin: 0; opacity: 0.9; }
+        .emoji   { font-size: 3em; display: block; margin-bottom: 15px; }
+        .disclaimer {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            padding: 8px 12px;
+            font-size: 0.7em;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            text-align: left;
+            z-index: 1000;
+        }
+        .disclaimer p { margin: 0; line-height: 1.3; }
+        .user-profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+        .logout-btn {
+            background-color: #2654df;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .logout-btn:hover { background-color: #ff6b81; }
+    </style>
+</head>
+<body>
+
+    <!-- User profile bar — server-rendered, no JS needed -->
+    <div class="user-profile">
+        {% if user %}
+            <span>User: {{ user }}</span>
+            <a href="/auth/logout"><button class="logout-btn">Logout</button></a>
+        {% else %}
+            <span>Not logged in</span>
+            <a href="/auth/login"><button class="logout-btn">Login</button></a>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <h1>WebKinz World</h1>
+        <p>Welcome to the WebKinz World! Choose between our Geo or Species guessing games to play:</p>
+        <div class="links">
+            <a href="/GeoGuessr/" class="card">
+                <span class="emoji">🌍</span>
+                <h2>GeoGuesser</h2>
+                <p>Explore zoos across the world and try to guess where each animal comes from!</p>
+            </a>
+            <a href="/Species%20guessing%20game/" class="card">
+                <span class="emoji">🐘</span>
+                <h2>Species Guessing Game</h2>
+                <p>Can you identify different animals from across the world?</p>
+            </a>
+            <a href="/home/zoo_map.html" class="card">
+                <span class="emoji">🗺️</span>
+                <h2>Zoo Explorer Map</h2>
+                <p>Explore zoos worldwide and watch live animal cams!</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <p><strong>Educational Project Disclaimer</strong></p>
+        <p>This website was created as a class project for educational purposes only.</p>
+    </div>
+
+</body>
+</html>
