@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Choose Mode - Species Guessing Game</title>
-  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="/static/Species guessing game/src/styles.css" />
 </head>
 <body>
   <div id="mode-select">
@@ -81,7 +81,7 @@
 
     function launchMode(mode) {
       window.localStorage.setItem(STORAGE_KEY_LAST_MODE, mode);
-      window.location.href = `index.html?mode=${encodeURIComponent(mode)}&difficulty=${encodeURIComponent(currentDifficulty)}`;
+      window.location.href = `/Species%20guessing%20game/?mode=${encodeURIComponent(mode)}&difficulty=${encodeURIComponent(currentDifficulty)}`;
     }
 
     difficultyButtons.forEach((button) => {
@@ -99,7 +99,7 @@
     updateDifficultySelection();
 
     homeButton.addEventListener("click", () => {
-      window.location.href = "../../index.html";
+      window.location.href = "/";
     });
   </script>
 </body>
