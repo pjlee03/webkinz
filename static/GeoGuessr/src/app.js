@@ -1,4 +1,4 @@
-import { locations } from "./data.js";
+import { locations } from "/static/GeoGuessr/src/data.js";
 import {
     initMap,
     placeUserGuessMarker,
@@ -6,7 +6,7 @@ import {
     drawLineBetweenPoints,
     fitBound,
     resetMap
-} from "./map.js";
+} from "/static/GeoGuessr/src/map.js";
 
 // ------------------------------
 // STATE
@@ -23,18 +23,10 @@ let challengeResults = [];
 let countDownTime = 60;
 let timerInterval = null;
 let mapInitialized = false;
-let availableLocations = [];
 
 // ------------------------------
-// MODE SELECTION 
+// MODE SELECTION
 // ------------------------------
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
 function selectMode(mode) {
     gameMode = mode;
     totalScore = 0;
@@ -42,8 +34,6 @@ function selectMode(mode) {
     challengeResults = [];
     countDownTime = 60;
 
-    availableLocations = [...locations];
-    shuffleArray(availableLocations);
     document.getElementById("mode-select").style.display = "none";
     document.getElementById("game-layout").style.display = "block";
     const countDownElement = document.getElementById('countdown-display');
@@ -61,11 +51,11 @@ function selectMode(mode) {
     if (mode === "timed") {
         countDownElement.style.display = "inline-block";
         countDownElement.textContent = countDownTime + ' seconds remaining';
-        
+
         timerInterval = setInterval(function() {
             countDownTime--;
             countDownElement.textContent = countDownTime + ' seconds remaining';
-            
+
             if (countDownTime <= 0) {
                 clearInterval(timerInterval);
                 activeRound = false;
@@ -75,7 +65,7 @@ function selectMode(mode) {
     } else {
         if (countDownElement) countDownElement.style.display = "none";
     }
-    
+
     startRound();
 }
 
@@ -112,44 +102,41 @@ function getHighScores() {
     }
 }
 
-function saveHighScore(score, mode) {
-    if (mode !== "challenge" && mode !== "timed") return; 
-
-    const highScores = getHighScores();
-    const newScore = { score: score, date: new Date().toLocaleDateString() };
-    
-    highScores[mode].push(newScore);
-    highScores[mode].sort((a, b) => b.score - a.score); 
-    highScores[mode] = highScores[mode].slice(0, 10);
-    
-    localStorage.setItem(HIGH_SCORES_KEY, JSON.stringify(highScores));
-    displayHighScores();
+async function saveHighScore(score, mode) {
+    if (mode !== "challenge" && mode !== "timed") return;
+    try {
+        const res = await fetch("/api/score", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ game: "geoguessr_" + mode, score: score })
+        });
+        if(res.status === 401){
+           console.log("Not logged in");
+        }
+    } catch (e) {
+        console.error("Could not save score:", e);
+    }
+    await displayHighScores();
 }
 
-function displayHighScores() {
-    const highScores = getHighScores();
-    
-    const generateListHTML = (scoresArray) => {
-        if (!scoresArray || scoresArray.length === 0) return "<li>No scores yet.</li>";
-        let html = "";
-        scoresArray.forEach(entry => {
-            html += `<li>${entry.score} pts - ${entry.date}</li>`;
-        });
-        return html;
-    };
+async function displayHighScores() {
+    try {
+        const res = await fetch("/api/scores/geoguessr");
+        if (!res.ok) return;
+        const data = await res.json();
 
-    const challengeHTML = generateListHTML(highScores.challenge);
-    const timedHTML = generateListHTML(highScores.timed);
+        const generateListHTML = (scoresArray) => {
+            if (!scoresArray || scoresArray.length === 0) return "<li>No scores yet.</li>";
+            return scoresArray.map(e => `<li>${e.user} - ${e.score} pts - ${e.date}</li>`).join("");
+        };
 
-    const homeChallenge = document.getElementById("home-challenge-scores");
-    const homeTimed = document.getElementById("home-timed-scores");
-    const scorecardChallenge = document.getElementById("scorecard-challenge-scores");
-    const scorecardTimed = document.getElementById("scorecard-timed-scores");
-
-    if (homeChallenge) homeChallenge.innerHTML = challengeHTML;
-    if (homeTimed) homeTimed.innerHTML = timedHTML;
-    if (scorecardChallenge) scorecardChallenge.innerHTML = challengeHTML;
-    if (scorecardTimed) scorecardTimed.innerHTML = timedHTML;
+        const homeChallenge = document.getElementById("home-challenge-scores");
+        const homeTimed     = document.getElementById("home-timed-scores");
+        if (homeChallenge) homeChallenge.innerHTML = generateListHTML(data.challenge);
+        if (homeTimed)     homeTimed.innerHTML     = generateListHTML(data.timed);
+    } catch (e) {
+        console.error("Could not load scores:", e);
+    }
 }
 
 // ------------------------------
@@ -159,18 +146,6 @@ function startRound() {
     activeRound = true;
     selectedLocation = null;
     resetMap();
-
-    if (availableLocations.length === 0) {
-        availableLocations = [...locations];
-        shuffleArray(availableLocations);
-
-        if (currentRound && availableLocations[availableLocations.length - 1].animal === currentRound.animal) {
-            const temp = availableLocations[availableLocations.length - 1];
-            availableLocations[availableLocations.length - 1] = availableLocations[0];
-            availableLocations[0] = temp;
-        }
-    }
-    currentRound = availableLocations.pop();
 
     const roundCounter = document.getElementById("round-counter");
     const nextRoundBtn = document.getElementById("next-round");
@@ -182,6 +157,8 @@ function startRound() {
         roundCounter.textContent = `Round ${challengeRound} / ${CHALLENGE_TOTAL_ROUNDS}`;
         roundCounter.style.display = "inline-block";
     }
+
+    currentRound = locations[Math.floor(Math.random() * locations.length)];
 
     document.getElementById("animal-image").src = currentRound.imageUrl;
     document.getElementById("zoo-label").textContent = "Guess the Zoo location of this animal!";
@@ -320,7 +297,7 @@ document.getElementById("exit-to-modes").addEventListener("click", () => {
         clearInterval(timerInterval);
         timerInterval = null;
     }
-    
+
     activeRound = false;
     totalScore = 0;
     challengeRound = 0;
@@ -329,23 +306,23 @@ document.getElementById("exit-to-modes").addEventListener("click", () => {
     document.getElementById("game-layout").style.display = "none";
     document.getElementById("scorecard").style.display = "none";
     document.getElementById("mode-select").style.display = "flex";
-    
+
     if (mapInitialized) {
         resetMap();
     }
 });
- 
+
 document.getElementById("home-from-modes").addEventListener("click", () => {
-    window.location.href = "../../index.html";
+    window.location.href = "/";
 });
- 
+
 document.getElementById("exit-to-modes-scorecard").addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "/GeoGuessr/";
 });
 
 // ------------------------------
 // INITIALIZE
 // ------------------------------
-window.onload = function () {
-    displayHighScores();
+window.onload = async function () {
+    await displayHighScores();
 };
