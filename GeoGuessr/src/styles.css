@@ -211,6 +211,14 @@ button:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
+#animal-image {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  background: linear-gradient(135deg, #2E27F5 0%, #764ba2 100%);  border-radius: 8px;
+  display: block;
+}
+
 .results {
   margin-top: 20px;
   font-weight: 600;
