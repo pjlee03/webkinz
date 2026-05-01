@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webkinz - Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1 class="heading">Webkinz</h1>
+        <h3 class="title">Please login or create an account to save progress.</h3>
+    </header>
+
+    {% if error %}
+        <p style="color: red; text-align: center;">{{ error }}</p>
+    {% endif %}
+
+    <div class="container">
+        <div class="btn">
+            <div class="slider"></div>
+            <button class="login"  onclick="showLogin()">Login</button>
+            <button class="signup" onclick="showSignup()">Signup</button>
+        </div>
+
+        <div class="form-section">
+
+            <!-- Login form — posts to Flask /auth/login -->
+            <div class="login-box" id="loginBox">
+                <form method="POST" action="/auth/login">
+                    <input type="email"    name="email"    class="username ele" placeholder="Email Address" required>
+                    <input type="password" name="password" class="password ele" placeholder="Password"      required>
+                    <button type="submit" class="clkbtn">Login</button>
+                </form>
+            </div>
+
+            <!-- Signup form — posts to Flask /auth/register -->
+            <div class="signup-box" id="signupBox" style="display: none;">
+                <form method="POST" action="/auth/register">
+                    <input type="text"     name="username" class="username ele" placeholder="Username"         required>
+                    <input type="email"    name="email"    class="username ele" placeholder="Email Address"    required>
+                    <input type="password" name="password" class="password ele" placeholder="Password"         required>
+                    <input type="password" name="confirm"  class="password ele" placeholder="Confirm Password" required>
+                    <button type="submit" class="clkbtn">Signup</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Keep your existing slider UI behavior, just swap JS auth for form submits
+        function showLogin() {
+            document.getElementById('loginBox').style.display = 'block';
+            document.getElementById('signupBox').style.display = 'none';
+        }
+        function showSignup() {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('signupBox').style.display = 'block';
+        }
+
+        // Show signup box if redirected here after a failed register
+        {% if active_tab == 'signup' %}
+            showSignup();
+        {% endif %}
+    </script>
+
+</body>
+</html>
