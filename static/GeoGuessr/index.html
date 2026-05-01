@@ -5,15 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZooGuessr</title>
-  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="/static/GeoGuessr/src/styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
 </head>
 
-<body> 
+<body>
   <!-- Mode Selection Screen -->
   <div id="mode-select" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 30px; padding: 40px 0;">
-    
+
     <div class="mode-select-card" style="margin: 0;">
       <h1>ZooGuessr</h1>
       <button id="home-from-modes" type="button" class="exit-btn">
@@ -69,7 +69,7 @@
      <section class="image-panel">
         <img id="animal-image" src="" alt="Animal location clue" />
         <p id="zoo-label">Location clue will appear here</p>
-     </section> 
+     </section>
 
      <!-- Controls -->
     <section class="controls">
@@ -126,6 +126,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- App js-->
-  <script type="module" src="src/app.js"></script> 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="/static/GeoGuessr/src/app.js"></script>
 </body>
 </html>
