@@ -607,5 +607,5 @@ if (!selectedMode) {
 }
 
 homeButton.addEventListener("click", () => {
-  window.location.href = "https://webkinz.tech/";
+  window.location.href = "../../index.html";
 });

@@ -1833,7 +1833,7 @@ function goToModeSelectionPage() {
 }
 
 function goHome() {
-  window.location.href = "https://webkinz.tech/";
+  window.location.href = "../../index.html";
 }
 
 function resetProgress() {

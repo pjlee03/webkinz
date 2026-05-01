@@ -150,15 +150,15 @@ function startRound() {
     selectedLocation = null;
     resetMap();
 
+    const roundCounter = document.getElementById("round-counter");
+    const nextRoundBtn = document.getElementById("next-round");
+    roundCounter.style.display = "none";
+    nextRoundBtn.style.display = "none";
+
     if (gameMode === "challenge") {
         challengeRound += 1;
-        document.getElementById("round-counter").textContent = `Round ${challengeRound} / ${CHALLENGE_TOTAL_ROUNDS}`;
-        document.getElementById("next-round").style.display = "none";
-    } else if (gameMode === "timed") {
-        document.getElementById("next-round").style.display = "none";
-    }
-    else {
-        document.getElementById("round-counter").textContent = "";
+        roundCounter.textContent = `Round ${challengeRound} / ${CHALLENGE_TOTAL_ROUNDS}`;
+        roundCounter.style.display = "inline-block";
     }
 
     currentRound = locations[Math.floor(Math.random() * locations.length)];
@@ -293,7 +293,34 @@ document.getElementById("play-again").addEventListener("click", startRound);
 document.getElementById("next-round").addEventListener("click", startRound);
 document.getElementById("play-again-scorecard").addEventListener("click", () => {
     document.getElementById("scorecard").style.display = "none";
+    selectMode(gameMode);
+});
+document.getElementById("exit-to-modes").addEventListener("click", () => {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    
+    activeRound = false;
+    totalScore = 0;
+    challengeRound = 0;
+    challengeResults = [];
+    countDownTime = 60;
+    document.getElementById("game-layout").style.display = "none";
+    document.getElementById("scorecard").style.display = "none";
     document.getElementById("mode-select").style.display = "flex";
+    
+    if (mapInitialized) {
+        resetMap();
+    }
+});
+ 
+document.getElementById("home-from-modes").addEventListener("click", () => {
+    window.location.href = "../../index.html";
+});
+ 
+document.getElementById("exit-to-modes-scorecard").addEventListener("click", () => {
+    window.location.href = "index.html";
 });
 
 // ------------------------------

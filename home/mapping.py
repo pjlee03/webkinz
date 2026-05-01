@@ -1,4 +1,5 @@
 import folium
+from folium import Element
 import pandas as pd
 import time
 import geocoder
@@ -42,5 +43,15 @@ for _, row in df.iterrows():
         location=[row['lat'], row['lon']],
         popup=folium.Popup(popup_html, max_width=300)
     ).add_to(m)
+
+home_button_html = """
+<div style="position: fixed; top: 20px; right: 20px; z-index: 9999; pointer-events: auto;">
+    <a href="../index.html" style="background-color: #2E27F5; color: white; padding: 10px 20px; text-decoration: none; border-radius: 8px; font-family: Arial, sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2);">
+        Home
+    </a>
+</div>
+"""
+
+m.get_root().html.add_child(Element(home_button_html))
 
 m.save("zoo_map.html")

@@ -5,11 +5,11 @@
 body {
   margin: 0;
   padding: 24px;
-  background: #f2f5f7;
-  color: #1f2933;
+  background: linear-gradient(135deg, #2E27F5 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: white;
 }
 
-/* ------ Mode Selection Screen ------ */
 #mode-select {
   display: flex;
   justify-content: center;
@@ -19,11 +19,12 @@ body {
   box-sizing: border-box;
 }
 
-  .mode-select-card {
-  background: #ffffff;
-  border-radius: 12px;
+.mode-select-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   text-align: center;
   max-width: 480px;
   width: 100%;
@@ -31,6 +32,13 @@ body {
 
 .mode-select-card h1 {
   margin-top: 0;
+  color: white;
+  font-size: 2.5em;
+}
+
+.mode-select-card p {
+  color: white;
+  opacity: 0.9;
 }
 
 .mode-buttons {
@@ -38,6 +46,7 @@ body {
   gap: 16px;
   justify-content: center;
   margin-top: 24px;
+  flex-wrap: wrap;
 }
 
 .mode-buttons button {
@@ -45,16 +54,18 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px 28px;
-  border-radius: 10px;
-  background: #0b69ff;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.2);
   color: white;
   border: none;
   cursor: pointer;
   min-width: 140px;
+  transition: transform 0.3s, background 0.3s;
 }
 
 .mode-buttons button:hover {
-  opacity: 0.9;
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .mode-title {
@@ -68,82 +79,155 @@ body {
   opacity: 0.85;
 }
 
-/* ------ Game Layout ------ */
+/* ------ High Scores Section ------ */
+.high-scores {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 
+.high-scores h3 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.scores-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.score-column h4 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.score-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.score-column li {
+  color: white;
+  opacity: 0.9;
+  padding: 5px 0;
+  font-size: 0.9em;
+}
+
+/* ------ Game Layout ------ */
 .game-layout {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .game-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .game-header h1 {
   margin: 0;
+  color: white;
+  font-size: 2.2em;
 }
 
-#round-counter {
+#round-counter,
+#countdown-display {
   font-size: 1em;
   font-weight: bold;
-  color: #0b69ff;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.image-panel {
+  margin-bottom: 20px;
 }
 
 .image-panel img {
   width: 100%;
   height: 300px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 #zoo-label {
   font-weight: 600;
-  margin-top: 8px;
+  margin-top: 12px;
+  color: white;
+  font-size: 1.1em;
 }
 
 .controls {
-  margin-top: 12px;
+  margin-top: 16px;
 }
 
 .button-row {
   display: flex;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 button {
-  padding: 10px 14px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 8px;
-  background: #0b69ff;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.2);
   color: white;
   font-weight: bold;
   cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+  backdrop-filter: blur(5px);
 }
 
 button:hover {
-  opacity: 0.9;
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 #map {
   height: 420px;
-  margin-top: 16px;
-  border-radius: 10px;
+  margin-top: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .results {
-  margin-top: 16px;
+  margin-top: 20px;
   font-weight: 600;
+  color: white;
 }
 
-/* ------ Scorecard ------ */
+.results #result,
+.results #score,
+.results #fun-fact {
+  margin: 8px 0;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  line-height: 1.6;
+}
+
+
 #scorecard {
   display: flex;
   justify-content: center;
@@ -154,17 +238,26 @@ button:hover {
 }
 
 .scorecard-card {
-  background: #ffffff;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  max-width: 700px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
   width: 100%;
   text-align: center;
 }
 
 .scorecard-card h2 {
   margin-top: 0;
+  color: white;
+  font-size: 2.5em;
+}
+
+.scorecard-card p {
+  color: white;
+  opacity: 0.9;
+  font-size: 1.2em;
 }
 
 #scorecard-table {
@@ -176,16 +269,46 @@ button:hover {
 
 #scorecard-table th,
 #scorecard-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 #scorecard-table thead th {
-  background: #f2f5f7;
+  background: rgba(255, 255, 255, 0.15);
   font-weight: bold;
+  border-radius: 8px;
+}
+
+#scorecard-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 #scorecard-table tfoot td {
   font-weight: bold;
-  border-top: 2px solid #1f2933;
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  font-size: 1.2em;
+}
+
+
+@media screen and (max-width: 768px) {
+  .scores-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .game-layout {
+    padding: 20px;
+  }
+  
+  .game-header h1 {
+    font-size: 1.8em;
+  }
+  
+  .image-panel img {
+    height: 200px;
+  }
+  
+  #map {
+    height: 300px;
+  }
 }
