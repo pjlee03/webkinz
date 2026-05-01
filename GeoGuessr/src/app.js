@@ -23,10 +23,18 @@ let challengeResults = [];
 let countDownTime = 60;
 let timerInterval = null;
 let mapInitialized = false;
+let availableLocations = [];
 
 // ------------------------------
 // MODE SELECTION 
 // ------------------------------
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function selectMode(mode) {
     gameMode = mode;
     totalScore = 0;
@@ -34,6 +42,8 @@ function selectMode(mode) {
     challengeResults = [];
     countDownTime = 60;
 
+    availableLocations = [...locations];
+    shuffleArray(availableLocations);
     document.getElementById("mode-select").style.display = "none";
     document.getElementById("game-layout").style.display = "block";
     const countDownElement = document.getElementById('countdown-display');
@@ -150,6 +160,18 @@ function startRound() {
     selectedLocation = null;
     resetMap();
 
+    if (availableLocations.length === 0) {
+        availableLocations = [...locations];
+        shuffleArray(availableLocations);
+
+        if (currentRound && availableLocations[availableLocations.length - 1].animal === currentRound.animal) {
+            const temp = availableLocations[availableLocations.length - 1];
+            availableLocations[availableLocations.length - 1] = availableLocations[0];
+            availableLocations[0] = temp;
+        }
+    }
+    currentRound = availableLocations.pop();
+
     const roundCounter = document.getElementById("round-counter");
     const nextRoundBtn = document.getElementById("next-round");
     roundCounter.style.display = "none";
@@ -160,8 +182,6 @@ function startRound() {
         roundCounter.textContent = `Round ${challengeRound} / ${CHALLENGE_TOTAL_ROUNDS}`;
         roundCounter.style.display = "inline-block";
     }
-
-    currentRound = locations[Math.floor(Math.random() * locations.length)];
 
     document.getElementById("animal-image").src = currentRound.imageUrl;
     document.getElementById("zoo-label").textContent = "Guess the Zoo location of this animal!";
