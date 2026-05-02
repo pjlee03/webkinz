@@ -2,27 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebKins</title>
-  <link rel="stylesheet" href="/static/home/home.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebKins Zoo Explorer</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='home/home.css') }}">
+  <!--aidyns link connection save <link rel="stylesheet" href="/static/home/home.css" />--->
 </head>
+
 <body>
-    <section class ="map-container">
-        <h1>Welcome to WebKins</h1>
-        <p>View live zoo cams from anywhere in the world </p>
+
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Explore Live Zoo Cameras 🌍</h2>
+      <p>Watch animals around the world in real time.</p>
+      <button onclick="scrollToMap()">Start Exploring</button>
+    </div>
+  </section>
+
+ 
+  <div class="main-layout">
+
+    <section class="map-section" id="map">
+      <h2>🌎 Live Zoo Map</h2>
+      
+
         <div id="map-container">
-            <iframe src="/home/zoo_map.html" width="100%" height="500px" frameborder="0"></iframe>
+            <iframe src="zoo_map.html" width="100%" height="500px" frameborder="0"></iframe>
         </div>
     </section>
 
-    <section class="games">
-        <h2>Games</h2>
-        <button id="species-guess" type="button">Animal Guesser</button>
-        <p>Try to guess the exact animal species given a photo</p>
-        <button id="zoo-guess" type="button">Zoo Guesser</button>
-        <p>Guess where this animal is in the world</p>
-    </section>
+    <aside class="sidebar">
+      <h2>🎮 Games</h2>
+      <div class="game-card">
+        <h3>Animal Guesser</h3>
+        <p>Guess the animal species from an image.</p>
+        <button>Play</button>
+      </div>
 
+      <div class="game-card">
+        <h3>Zoo Guesser</h3>
+        <p>Guess where the animal is located.</p>
+        <button>Play</button>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <script>
+    function scrollToMap() {
+      document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
 
 </body>
 </html>
